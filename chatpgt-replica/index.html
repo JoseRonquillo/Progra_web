@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChatGPT Replica</title>
+</head>
+<body>
+  <header>
+    <h1>ChatGPT</h1>
+  </header>
+
+  <main>
+    <aside>
+      <nav>
+        <button>+ New Chat</button>
+        <ul>
+          <li><a href="#">Chat 1</a></li>
+          <li><a href="#">Chat 2</a></li>
+          <li><a href="#">Chat 3</a></li>
+        </ul>
+        <footer>
+          <button>Settings</button>
+          <button>Log out</button>
+        </footer>
+      </nav>
+    </aside>
+
+    <section>
+      <div class="chat-history">
+        <div class="message user">
+          <p>Hello, ChatGPT!</p>
+        </div>
+        <div class="message bot">
+          <p>Hello! How can I assist you today?</p>
+        </div>
+      </div>
+      <form class="chat-input">
+        <label for="user-input" hidden>Message</label>
+        <input type="text" id="user-input" name="user-input" placeholder="Send a message..." required />
+        <button type="submit">➤</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
