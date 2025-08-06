@@ -5,19 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ChatGPT Replica</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <main class="app-container">
     <aside class="sidebar">
-      <button class="new-chat">+ New Chat</button>
+      <button class="new-chat"><i class="fas fa-plus"></i> New Chat</button>
       <ul class="chat-list">
-        <li><a href="#">Chat 1</a></li>
-        <li><a href="#">Chat 2</a></li>
-        <li><a href="#">Chat 3</a></li>
+        <li><a href="#"><i class="fas fa-comments"></i> Chat 1</a></li>
+        <li><a href="#"><i class="fas fa-comments"></i> Chat 2</a></li>
+        <li><a href="#"><i class="fas fa-comments"></i> Chat 3</a></li>
       </ul>
       <div class="sidebar-footer">
-        <button>Settings</button>
-        <button>Log out</button>
+        <button><i class="fas fa-cog"></i> Settings</button>
+        <button><i class="fas fa-sign-out-alt"></i> Log out</button>
       </div>
     </aside>
 
@@ -33,7 +34,7 @@
       <form class="chat-input">
         <label for="user-input" hidden>Message</label>
         <input type="text" id="user-input" name="user-input" placeholder="Send a message..." required />
-        <button type="submit">➤</button>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
       </form>
     </section>
   </main>
