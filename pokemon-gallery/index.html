@@ -1,13 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pokémon Gallery</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main id="app">
+      <h1>Pokémon Gallery</h1>
+      <div id="controls">
+        <label>Límite: <input id="limit" type="number" min="1" max="60" value="30" /></label>
+        <button id="reload">Recargar</button>
+      </div>
+      <div id="status" aria-live="polite"></div>
+      <section id="grid" class="grid"></section>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
