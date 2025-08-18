@@ -22,7 +22,7 @@ jobs:
       # :contentReference[oaicite:14]{index=14}
 
       - name: Install
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
