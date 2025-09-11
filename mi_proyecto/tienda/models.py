@@ -21,3 +21,10 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nombre
 
+class Pedido(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    fecha = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Pedido {self.id} - {self.cliente.nombre}"
