@@ -7,6 +7,7 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    command: redis-server --appendonly yes
     networks:
       - secret-network
 
@@ -22,7 +23,9 @@ services:
       - secret-network
 
   backend:
-    build: ./backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
@@ -32,20 +35,32 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - DJANGO_SECRET_KEY=your-production-secret-key-change-this
+      - DEBUG=False
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
     networks:
       - secret-network
+    healthcheck:
+      test: ["CMD", "python", "manage.py", "check"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     environment:
       - REACT_APP_BACKEND_URL=http://localhost:8000
+      - CHOKIDAR_USEPOLLING=true
     networks:
       - secret-network
 
