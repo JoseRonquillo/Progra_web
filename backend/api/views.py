@@ -8,3 +8,11 @@ class HealthCheckView(APIView):
             'status': 'healthy',
             'message': 'API is running'
         }, status=status.HTTP_200_OK)
+
+class HideSecretView(APIView):
+    def post(self, request):
+        secret = request.data.get('secret', '').strip()
+        if not secret:
+            return Response({'error': 'Secreto requerido'}, status=status.HTTP_400_BAD_REQUEST)
+        # temporal, solo devuelve la clave dummy
+        return Response({'key': 'dummy123', 'message': 'Secreto recibido'}, status=status.HTTP_201_CREATED)
