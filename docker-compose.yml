@@ -1,18 +1,18 @@
-version: '3.8'
-
 services:
   redis:
     image: redis:7-alpine
+    container_name: secret_redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     command: redis-server --appendonly yes
     networks:
-      - secret-network
+      - secret_network
 
   redis-commander:
     image: rediscommander/redis-commander:latest
+    container_name: redis_viewer
     environment:
       - REDIS_HOSTS=local:redis:6379
     ports:
@@ -20,53 +20,34 @@ services:
     depends_on:
       - redis
     networks:
-      - secret-network
+      - secret_network
 
   backend:
-    build: 
-      context: ./backend
-      dockerfile: Dockerfile
+    build: ./backend
+    container_name: secret_backend
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - redis
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - DJANGO_SECRET_KEY=your-production-secret-key-change-this
-      - DEBUG=False
-      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
-    networks:
-      - secret-network
-    healthcheck:
-      test: ["CMD", "python", "manage.py", "check"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
     depends_on:
-      backend:
-        condition: service_healthy
-    environment:
-      - REACT_APP_BACKEND_URL=http://localhost:8000
-      - CHOKIDAR_USEPOLLING=true
+      - redis
     networks:
-      - secret-network
+      - secret_network
+
+  frontend-react:
+    build: ./frontend-react
+    container_name: secret_frontend_react
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - secret_network
 
 volumes:
   redis_data:
 
 networks:
-  secret-network:
+  secret_network:
     driver: bridge
