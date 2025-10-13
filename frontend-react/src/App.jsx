@@ -6,7 +6,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('hide');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-tr from-purple-50 to-pink-50">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
@@ -21,7 +21,7 @@ function App() {
                 onClick={() => setActiveTab('hide')}
                 className={`flex-1 py-4 px-6 font-semibold transition-colors ${
                   activeTab === 'hide'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-pink-500 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -31,7 +31,7 @@ function App() {
                 onClick={() => setActiveTab('reveal')}
                 className={`flex-1 py-4 px-6 font-semibold transition-colors ${
                   activeTab === 'reveal'
-                    ? 'bg-indigo-600 text-white'
+                    ? 'bg-pink-500 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
