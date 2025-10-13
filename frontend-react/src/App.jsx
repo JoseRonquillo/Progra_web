@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import HideTab from './components/HideTab';
+import RevealTab from './components/RevealTab';
 
 function App() {
   const [tab, setTab] = useState('hide');
@@ -9,20 +11,20 @@ function App() {
         <div className="flex mb-4">
           <button
             onClick={() => setTab('hide')}
-            className="flex-1 py-2 bg-blue-500 text-white font-semibold mr-1"
+            className={`flex-1 py-2 font-semibold mr-1 ${tab==='hide'?'bg-blue-500 text-white':'bg-gray-300'}`}
           >
             Esconder
           </button>
           <button
             onClick={() => setTab('reveal')}
-            className="flex-1 py-2 bg-gray-300 font-semibold ml-1"
+            className={`flex-1 py-2 font-semibold ml-1 ${tab==='reveal'?'bg-green-500 text-white':'bg-gray-300'}`}
           >
             Revelar
           </button>
         </div>
 
         <div className="p-4 bg-white rounded shadow">
-          {tab === 'hide' ? <p>HideTab placeholder</p> : <p>RevealTab placeholder</p>}
+          {tab === 'hide' ? <HideTab /> : <RevealTab />}
         </div>
       </div>
     </div>
